@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>系统架构关系图 · System Architecture Graph</title>
+  <link rel="stylesheet" href="styles.css">
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <header>
+    <h1>系统架构关系图 <span class="sub">System Architecture Graph</span></h1>
+    <div class="controls">
+      <label for="datasetSelect">数据集 Dataset:</label>
+      <select id="datasetSelect">
+        <option value="full" selected>完整架构 · Full</option>
+        <option value="minimal">最小样例 · Minimal</option>
+      </select>
+      <button id="resetBtn" title="复位视图 Reset View">复位 · Reset</button>
+      <span class="hint">缩放: 滚轮 · Zoom: Wheel | 平移: 拖拽 · Pan: Drag | 双击画布复位 · Double-click canvas to reset</span>
+    </div>
+  </header>
+  <main>
+    <div id="viz-wrap">
+      <svg id="viz" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Radial Compact Tree of Architecture"></svg>
+    </div>
+    <aside id="detail" class="hidden" aria-live="polite"></aside>
+  </main>
+  <footer>
+    <div class="note">
+      数据源 Data Source: samples/neo4j/*.jsonl（可在右上切换数据集） · 主体中文，附英文对照。
+    </div>
+  </footer>
+</body>
+</html>
