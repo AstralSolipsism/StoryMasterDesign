@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <title>系统构架关系图（基于 JSONL）</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <header class="app-header">
+    <h1>系统构架关系图</h1>
+    <div class="sub">数据来源：samples/neo4j/full_architecture_nodes.jsonl 与 full_architecture_rels.jsonl</div>
+    <div class="toolbar">
+      <button id="btn-reset">重置视图</button>
+      <label class="chk">
+        <input type="checkbox" id="toggle-core-highlight" />
+        高亮核心模块
+      </label>
+    </div>
+  </header>
+
+  <main class="app-main">
+    <div id="graph-container">
+      <svg id="graph" width="100%" height="100%"></svg>
+      <div id="overlay" class="overlay hidden">
+        <div class="overlay-card">
+          <div class="overlay-title">无法加载 JSONL</div>
+          <div class="overlay-body">
+            浏览器直接以 file:// 打开时，读取本地文件可能受限。<br />
+            解决方式：请在项目根目录启动任意本地静态服务器后再访问本页面。<br />
+            示例：VS Code 的 Live Server、或命令行运行 <code>python -m http.server 8080</code> 后访问 <code>http://localhost:8080/</code>。
+          </div>
+          <div class="overlay-actions">
+            <button id="overlay-close">我知道了</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <aside id="sidebar" class="sidebar">
+      <div class="card">
+        <div class="card-header">
+          <div class="title" id="card-title">请选择一个节点</div>
+          <button class="close" id="card-close">×</button>
+        </div>
+        <div class="card-body" id="card-body">
+          点击画布中的任意节点以查看详细信息。
+        </div>
+      </div>
+      <div class="legend">
+        <div class="legend-title">图例</div>
+        <ul>
+          <li><span class="dot module orch"></span>模块（编排层）</li>
+          <li><span class="dot module exec"></span>模块（执行层）</li>
+          <li><span class="dot policy"></span>策略/规则</li>
+          <li><span class="dot service"></span>上游渠道/模型端点</li>
+          <li><span class="dot taxonomy"></span>标签/分组</li>
+          <li><span class="dot data"></span>数据域（场景/位置/角色）</li>
+          <li><span class="dot event"></span>事件/时间</li>
+        </ul>
+      </div>
+    </aside>
+  </main>
+
+  <script src="https://unpkg.com/d3@7"></script>
+  <script src="./js/zh-mapping.js"></script>
+  <script src="./js/data-loader.js"></script>
+  <script src="./app.js"></script>
+</body>
+</html>
